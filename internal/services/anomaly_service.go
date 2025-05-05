@@ -34,6 +34,7 @@ const (
 	AnomalyTypeNullValues AnomalyType = "null_values"        // When required fields are null
 	AnomalyTypeDeviation  AnomalyType = "standard_deviation" // When value deviates significantly from mean
 	AnomalyTypeThreshold  AnomalyType = "threshold"          // When value exceeds a threshold
+	AnomalyTypeMinSalary  AnomalyType = "min_salary"         // When value deviates significantly from mean
 
 	// Anomaly categories
 	AnomalyCategoryAbsolute AnomalyCategory = "absolute" // Based on fixed rules
@@ -232,9 +233,14 @@ func (s *AnomalyService) DetectAnomalies(job *models.JobData) ([]models.Anomaly,
 
 		// Check based on rule type
 		switch rule.Type {
-		case models.AnomalyTypeSalary:
+		case models.AnomalyTypeMaxSalary:
 			if job.MaxSalary != nil {
 				actualValue = *job.MaxSalary
+				anomalyDetected = compareValues(actualValue, rule.Value, rule.Operator)
+			}
+		case models.AnomalyTypeMinSalary:
+			if job.MinSalary != nil {
+				actualValue = *job.MinSalary
 				anomalyDetected = compareValues(actualValue, rule.Value, rule.Operator)
 			}
 		case models.AnomalyTypeRating:

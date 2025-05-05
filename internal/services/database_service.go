@@ -227,7 +227,7 @@ func createDefaultAnomalyRules(dbService DatabaseServiceInterface) error {
 	query := `
 		INSERT INTO anomaly_rules (name, description, type, operator, value, is_active, created_at, updated_at)
 		VALUES 
-		('Negative Salary', 'Alert if maximum salary is negative', 'salary', '<', 0.0, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+		('Negative Salary', 'Alert if maximum salary is negative', 'max_salary', '<', 0.0, true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 		ON CONFLICT (name) DO NOTHING;
 	`
 
@@ -238,14 +238,3 @@ func createDefaultAnomalyRules(dbService DatabaseServiceInterface) error {
 	log.Println("Default anomaly rules created successfully.")
 	return nil
 }
-
-// Removed createAnomalyRuleExecutionsTable and createAnomalyAlertsTable
-// as they seemed related to the more complex AdvancedAnomalyRule setup.
-
-// Removed specific data methods like InsertJob, GetJobByID, GetJobByRowIndex,
-// GetJobsByRowIndexRange, GetAllJobs, SaveAnomalyRuleExecution, SaveAnomalyAlert,
-// GetActiveAnomalyRules, GetAnomalyRules, GetAnomalyRule, SaveAnomalyRule,
-// ToggleAnomalyRule, DeleteAnomalyRule, SaveAnomaly, GetAnomaliesByJobID,
-// GetAllAnomalies, GetJobData, SaveJobData.
-// This logic will be moved to the specific service implementations (JobDataService, AnomalyService, etc.)
-// where they will use the dbService.Exec, dbService.Query, dbService.QueryRow methods.

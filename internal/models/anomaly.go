@@ -7,7 +7,8 @@ type ComparisonOperator string
 
 const (
 	// Simple predefined check types
-	AnomalyTypeSalary     AnomalyType = "salary"             // For salary threshold checks
+	AnomalyTypeMaxSalary  AnomalyType = "max_salary"         // For max salary threshold checks
+	AnomalyTypeMinSalary  AnomalyType = "min_salary"         // For min salary threshold checks
 	AnomalyTypeRating     AnomalyType = "company_rating"     // For company rating checks
 	AnomalyTypeNullValues AnomalyType = "null_values"        // For null value checks
 	AnomalyTypeDeviation  AnomalyType = "standard_deviation" // For standard deviation checks

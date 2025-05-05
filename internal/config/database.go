@@ -30,7 +30,7 @@ func NewDBConfig() *DBConfig {
 	config := &DBConfig{
 		Host:     getEnv("DB_HOST", "localhost"),
 		Port:     port,
-		User:     getEnv("DB_USER", "ainesharumugam"),
+		User:     getEnv("DB_USER", "postgres"),
 		Password: getEnv("DB_PASSWORD", ""),
 		DBName:   getEnv("DB_NAME", "anomaly_detection"),
 	}

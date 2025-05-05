@@ -14,6 +14,7 @@ import (
 	"github.com/ainesh01/anomaly_detection/internal/config"
 	"github.com/ainesh01/anomaly_detection/internal/handlers"
 	"github.com/ainesh01/anomaly_detection/internal/services"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 )
@@ -100,6 +101,15 @@ func setupServer(
 	servercfg *config.ServerConfig,
 ) *http.Server {
 	router := gin.Default()
+
+	// Configure CORS
+	config := cors.DefaultConfig()
+	// Allow requests from the frontend development server
+	config.AllowOrigins = []string{"http://localhost:3000"}
+	// Allow common methods and headers
+	config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"}
+	config.AllowHeaders = []string{"Origin", "Content-Type", "Accept", "Authorization"}
+	router.Use(cors.New(config))
 
 	// Health check endpoint
 	router.GET("/health", func(c *gin.Context) {
