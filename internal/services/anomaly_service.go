@@ -475,6 +475,3 @@ func (s *AnomalyService) DetectAnomaliesForAllJobs() error {
 
 	return nil
 }
-
-// Removed rule management methods (GetAnomalyRules, GetAnomalyRule, CreateAnomalyRule, etc.)
-// as they belong to AnomalyRuleService
