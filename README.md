@@ -49,7 +49,7 @@ pnpm dev
 
 - Implement proper database integration
 - Add authentication and authorization
-- Implement anomaly detection rules
+- Implement indepth anomaly detection rules
 - Add unit tests and integration tests
 - Add API documentation with Swagger
 - Add configuration management
